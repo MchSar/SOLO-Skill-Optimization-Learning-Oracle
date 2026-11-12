@@ -514,18 +514,38 @@ function App() {
        </section>
      </div>
    }
-   if(active==='AI Mentor') return (
-  <AIMentor
-    learnerContext={{
-      name: saved.profile.name,
-      education: saved.profile.education,
-      interests: saved.profile.interests,
-      careerTrack: career.title,
-      baselineAssessment: saved.assessment,
-      missionHistory: unifiedMissionHistory
-    }}
-  />
-)
+  if (active === 'AI Mentor') {
+  if (import.meta.env.PROD) {
+    return (
+      <div className="rounded-2xl border border-blue-100 bg-blue-50 p-8 text-center">
+        <div className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-full bg-blue-100 text-blue-700">
+          <Sparkles size={26} />
+        </div>
+
+        <h2 className="text-xl font-bold text-slate-900">
+          S.O.L.O. AI Mentor
+        </h2>
+
+        <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-slate-600">
+          AI Mentor is currently available only in the local demonstration version.
+        </p>
+      </div>
+    )
+  }
+
+  return (
+    <AIMentor
+      learnerContext={{
+        name: saved.profile.name,
+        education: saved.profile.education,
+        interests: saved.profile.interests,
+        careerTrack: career.title,
+        baselineAssessment: saved.assessment,
+        missionHistory: unifiedMissionHistory
+      }}
+    />
+  )
+}
    if(active==='AI Roadmap') return (
   <AIRoadmap
     learnerContext={{
